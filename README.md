@@ -1,13 +1,26 @@
+# OpenAPI Code Generation
+
 ## Prerequisites
 
-- Follow documentation on https://maven.apache.org/install.html and install Maven
-- Follow documentation on https://nodejs.org/en/download/ and install node.js
-- Once node.js is installed, install OpenAPI Generator in the command line by entering `npm install @openapitools/openapi-generator-cli -g` in a terminal
+- Apache Maven installed: https://maven.apache.org/install.html for documentation
+- Postman installed: https://www.postman.com/downloads/ for documentation
+- Node.js installed: https://nodejs.org/en/download/ for documentation
+- OpenAPI Generator CLI installed: Run `npm install @openapitools/openapi-generator-cli -g` in a terminal with node.js capacity to install
 
-## Installation
+## Code Generation
 
-- Copy `CurrentAccount.yaml` from this repository into a local directory
-- Open a terminal in the same directory as `CurrentAccount.yaml` and run `openapi-generator-cli generate -i OpenApi.yaml -g spring -o .` - this will generate the application from the OpenAPI specification within `CurrentAccount.yaml`
-- After the code has been generated,
+- Clone or fork this repository into a local directory
+- Open a terminal in the same directory as `CurrentAccount.yaml` and run `openapi-generator-cli generate -i CurrentAccount.yaml -g spring -o .` to generate the application from the OpenAPI specification within `CurrentAccount.yaml`
 
-- Run `mvn clean spring-boot:run` in your terminal - this will run the application
+## Bug Fixing
+
+- After the code has been generated, there is a bug that you must fix before being able to run the application
+- Open `EnumConverterConfiguration.java` within `src/main/java/org/openapitools/configuration`
+- Refactor `partyinvolvementtypevalues` and `partytypevalues` to begin with a capital letter, correctly import the dependencies, and finally delete the incorrect dependencies
+- If done correctly, there should no longer be any linting errors with the application
+
+## Testing
+
+- Run `mvn clean spring-boot:run` in your terminal to run the application
+- Open `localhost:8080` in your browser, which will redirect you to the Swagger interface documenting the endpoints within this API
+- Open Postman and use the collection JSON file in the directory to test two GET endpoints of the API: **GET current account information** and **GET current account lien information**
